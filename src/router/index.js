@@ -23,7 +23,7 @@ const routerMap = [
         redirect: '/user/profile',
         children: [// 用户中心-个人页面
           {
-            path: 'profile',
+            path: '/profile',
             name: 'profile',
             component: Profile,
             meta: {
@@ -61,7 +61,7 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
-    if (!to.meta.requiresAuth && to.path === '/login') {
+    if (!to.meta.requiresAuth && to.path === '/login' && !(store.state.user.token === null)) {
       next({path: '/'})
     } else {
       next()
