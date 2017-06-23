@@ -1,6 +1,6 @@
 <template>
-  <div id="mainLayout">
-    <h3>这是网站主内容的layout</h3>
+  <div id="homeLayout">
+    <h3>这是主页、关于我们等页面的layout</h3>
     <router-link :to="{name: 'home'}">主页</router-link>
     <router-link :to="{name: 'about'}">关于我们</router-link>
     <router-link :to="{name: 'dashboard'}">控制面板</router-link>
@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  name: "mainLayout",
+  name: "homeLayout",
   data: function data() {
     return {
 

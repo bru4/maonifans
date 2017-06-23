@@ -1,12 +1,12 @@
 <template>
-  <div id="userLayout">
+  <div id="otherLayout">
     个人中心页面
     <router-view></router-view>
   </div>
 </template>
 <script>
 export default {
-  name: "userLayout",
+  name: "otherLayout",
   data: function data() {
     return {
 

@@ -2,36 +2,28 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 
-import MainLayout from '@/views/layouts/MainLayout'
-import UserLayout from '@/views/layouts/userLayout'
+import HomeLayout from '@/views/layouts/homeLayout'
+import MainLayout from '@/views/layouts/mainLayout'
+import OtherLayout from '@/views/layouts/otherLayout'
 
 import Login from '@/views/pages/auth/login'
 import Home from '@/views/pages/home'
 import About from '@/views/pages/about'
 import Profile from '@/views/pages/user/profile'
+import Dashboard from '@/views/pages/dashboard'
+import Test from '@/views/pages/dashboard'
 
 Vue.use(Router)
 
 const routerMap = [
   {
     path: '/',
-    component: MainLayout,
+    component: HomeLayout,
     children: [
-      // 首页
-      {
-        path: '/',
-        name: 'home',
-        component: Home
-      },
-      //关于我们
-      {
-        path: '/about',
-        name: 'about',
-        component: About
-      }
+      { path: '', name: 'home', component: Home },
+      { path: 'about', name: 'about', component: About }
     ]
   },
-  // 登录页面
   {
     path: '/login',
     name: 'login',
@@ -39,6 +31,15 @@ const routerMap = [
     meta: {
       requiresAuth: false
     }
+  },
+  {
+    path: '/panel',
+    component: MainLayout,
+    redirect: 'dashboard',
+    children: [
+      { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
+      { path: 'test', name: 'test', component: Test, meta: { requiresAuth: true } }
+    ]
   }
 ]
 
