@@ -2,10 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 
+import MainLayout from '@/views/layouts/MainLayout'
 import UserLayout from '@/views/layouts/userLayout'
 
 import Login from '@/views/pages/auth/login'
 import Home from '@/views/pages/home'
+import About from '@/views/pages/about'
 import Profile from '@/views/pages/user/profile'
 
 Vue.use(Router)
@@ -13,24 +15,19 @@ Vue.use(Router)
 const routerMap = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    component: MainLayout,
     children: [
-      // 用户中心
+      // 首页
       {
-        path: '/user',
-        component: UserLayout,
-        redirect: '/user/profile',
-        children: [// 用户中心-个人页面
-          {
-            path: '/profile',
-            name: 'profile',
-            component: Profile,
-            meta: {
-              requiresAuth: true
-            }
-          }
-        ]
+        path: '/',
+        name: 'home',
+        component: Home
+      },
+      //关于我们
+      {
+        path: '/about',
+        name: 'about',
+        component: About
       }
     ]
   },
@@ -50,7 +47,7 @@ const router = new Router({mode: 'history', routes: routerMap})
 router.beforeEach((to, from, next) => {
   // 判断该路由是否需要登录
   if (to.meta.requiresAuth) {
-    if (store.state.user.token) {
+    if (store.getters.token) {
       next()
     } else {
       next({
@@ -61,7 +58,7 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
-    if (!to.meta.requiresAuth && to.path === '/login' && !(store.state.user.token === null)) {
+    if (!to.meta.requiresAuth && to.path === '/login' && !(store.getters.token === null)) {
       next({path: '/'})
     } else {
       next()

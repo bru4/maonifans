@@ -1,17 +1,16 @@
 <template>
-  <div class="home">
-    主页啊
+  <div id="dashboard">
+    dashboard
   </div>
 </template>
 <script>
-
 export default {
-  name: "home",
+  name: "dashboard",
   data: function data() {
     return {
     }
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 </style>

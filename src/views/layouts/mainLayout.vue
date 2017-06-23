@@ -3,6 +3,7 @@
     主要的mainLayout
     <router-link :to="{name: 'home'}">主页</router-link>
     <router-link :to="{ name: 'profile'}">个人中心</router-link>
+    <router-link :to="{ name: 'about'}">关于我们</router-link>
     <router-link :to="{ name: 'login'}">登录</router-link>
     <router-view></router-view>
   </div>

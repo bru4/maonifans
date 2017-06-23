@@ -1,19 +1,16 @@
-let token = null
-
-if (localStorage.getItem('token')) {
-  token = localStorage.getItem('token')
-}
-
 const user = {
   state: {
-    token: token
+    token: localStorage.getItem('token')
   },
+  
   mutations: {
     // 设置token
     SET_TOKEN: (state, token) => {
       state.token = token
+      localStorage.setItem('token', token)
     }
   },
+
   actions: {
     // return new Promise((resolve, reject) => {
     //   resolve();
@@ -24,10 +21,14 @@ const user = {
       return new Promise((resolve, reject) => {
         const token = JSON.stringify(userform)
         commit('SET_TOKEN', token)
+        resolve();
       })
     },
   },
-  getters: {}
+
+  getters: {
+    token: state => state.token
+  }
 }
 
 export default user

@@ -20,7 +20,7 @@
     </el-form-item>
 
     <el-form-item>
-      <el-button type="primary" class="submit-btn" @click="submitForm('loginForm')">登录</el-button>
+      <el-button type="primary" class="submit-btn" :loading="loading" @click="submitForm('loginForm')">登录</el-button>
     </el-form-item>
 
   </el-form>
@@ -31,6 +31,7 @@ export default {
   name: "login",
   data: function data() {
     return {
+      loading: false,
       loginForm: {
         account: '',
         pwd: ''
@@ -68,7 +69,14 @@ export default {
       var _this = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$store.dispatch('login', _this.loginForm)
+          _this.loading = true
+          this.$store.dispatch('login', _this.loginForm).then(() => {
+            _this.loading = false
+            _this.$router.push({ path: '/' })
+          }).catch((error) => {
+            _this.$message.error(error);
+            _this.loading = false;
+          })
         } else {
           console.log('error submit');
           return false
@@ -83,10 +91,11 @@ export default {
     width: 100%;
     height: 100%;
     background-color: #2D394B;
-    padding-top: 200px;
+    overflow: hidden;
     .login-form {
         width: 300px;
         margin: 0 auto;
+        margin-top: 200px;
         .title {
             color: #fff;
             text-align: center;
