@@ -9,9 +9,8 @@ import OtherLayout from '@/views/layouts/otherLayout'
 import Login from '@/views/pages/auth/login'
 import Home from '@/views/pages/home'
 import About from '@/views/pages/about'
-import Profile from '@/views/pages/user/profile'
 import Dashboard from '@/views/pages/dashboard'
-import Test from '@/views/pages/dashboard'
+import Profile from '@/views/pages/user/profile'
 
 Vue.use(Router)
 
@@ -38,7 +37,7 @@ const routerMap = [
     redirect: 'dashboard',
     children: [
       { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
-      { path: 'test', name: 'test', component: Test, meta: { requiresAuth: true } }
+      { path: 'profile', name: 'profile', component: Profile, meta: { requiresAuth: true } },
     ]
   }
 ]

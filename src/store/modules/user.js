@@ -1,8 +1,11 @@
 const user = {
   state: {
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    currentUser: {
+      name: '爆刘继芬'
+    }
   },
-  
+
   mutations: {
     // 设置token
     SET_TOKEN: (state, token) => {
@@ -27,7 +30,8 @@ const user = {
   },
 
   getters: {
-    token: state => state.token
+    token: state => state.token,
+    currentUser: state => state.currentUser
   }
 }
 
