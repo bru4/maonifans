@@ -1,17 +1,99 @@
 <template>
-  <div id="login">
-    login
-  </div>
+<div class="login" id="login">
+  <el-form :model="loginForm" :rules="rules" ref="loginForm" class="login-form">
+    <h2 class="title">用户登录</h2>
+
+    <el-form-item prop="account">
+      <el-input v-model="loginForm.account" placeholder="用户账号">
+        <template slot="prepend">
+            <i class="fa fa-user-o"></i>
+          </template>
+      </el-input>
+    </el-form-item>
+
+    <el-form-item prop="pwd">
+      <el-input type="password" v-model="loginForm.pwd" placeholder="用户密码">
+        <template slot="prepend">
+            <i class="fa fa-key"></i>
+          </template>
+      </el-input>
+    </el-form-item>
+
+    <el-form-item>
+      <el-button type="primary" class="submit-btn" @click="submitForm('loginForm')">登录</el-button>
+    </el-form-item>
+
+  </el-form>
+</div>
 </template>
 <script>
 export default {
   name: "login",
   data: function data() {
     return {
-
+      loginForm: {
+        account: '',
+        pwd: ''
+      },
+      rules: {
+        account: [{
+            required: true,
+            message: '请输入用户账号（必填）',
+            trigger: 'blur'
+          },
+          {
+            min: 6,
+            max: 10,
+            message: '请输入用户账号（长度6-10）',
+            trigger: 'blur'
+          }
+        ],
+        pwd: [{
+            required: true,
+            message: '请输入用户密码（必填）',
+            trigger: 'blur'
+          },
+          {
+            min: 6,
+            max: 10,
+            message: '请输入用户密码（长度6-10）',
+            trigger: 'blur'
+          }
+        ]
+      }
+    }
+  },
+  methods: {
+    submitForm: function(formName) {
+      var _this = this
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$store.dispatch('login', _this.loginForm)
+        } else {
+          console.log('error submit');
+          return false
+        }
+      })
     }
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.login {
+    width: 100%;
+    height: 100%;
+    background-color: #2D394B;
+    padding-top: 200px;
+    .login-form {
+        width: 300px;
+        margin: 0 auto;
+        .title {
+            color: #fff;
+            text-align: center;
+        }
+        .submit-btn {
+            width: 100%;
+        }
+    }
+}
 </style>
