@@ -42,7 +42,10 @@ const routerMap = [
   }
 ]
 
-const router = new Router({mode: 'history', routes: routerMap})
+const router = new Router({
+  mode: 'history',
+  routes: routerMap
+})
 
 router.beforeEach((to, from, next) => {
   // 判断该路由是否需要登录

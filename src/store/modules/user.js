@@ -11,6 +11,10 @@ const user = {
     SET_TOKEN: (state, token) => {
       state.token = token
       localStorage.setItem('token', token)
+    },
+    LOGIN_OUT: (state) => {
+      state.token = null
+      localStorage.removeItem('token')
     }
   },
 
@@ -24,9 +28,17 @@ const user = {
       return new Promise((resolve, reject) => {
         const token = JSON.stringify(userform)
         commit('SET_TOKEN', token)
-        resolve();
+        resolve()
       })
     },
+
+    //注销
+    logout({commit}) {
+      return new Promise((resolve, reject) => {
+        commit('LOGIN_OUT')
+        resolve()
+      })
+    }
   },
 
   getters: {

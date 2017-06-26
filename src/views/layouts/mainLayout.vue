@@ -15,21 +15,21 @@
         </el-breadcrumb>
       </el-col>
       <el-col :span="2">
-        <el-dropdown>
+        <el-dropdown @command="clickDropDown">
           <span class="el-dropdown-link">
             {{currentUser.name}}
             <i class="fa fa-caret-down"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人信息</el-dropdown-item>
-            <el-dropdown-item divided>注销</el-dropdown-item>
+            <el-dropdown-item divided command="logout">注销</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </el-col>
     </el-row>
 
     <transition name="fade" mode="out-in">
-      <router-view></router-view>
+      <router-view class="layout-content"></router-view>
     </transition>
   </el-col>
 </el-row>
@@ -59,6 +59,23 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    clickDropDown: function(command) {
+      switch (command) {
+        case 'logout':
+          this.logout()
+          break
+        default:
+          break
+      }
+    },
+    logout: function(){
+      var _this = this
+      this.$store.dispatch('logout').then(() => {
+        _this.$router.push({ path: '/' })
+      }).catch((error) => {
+        _this.$message.error(error);
+      })
     }
   }
 }
@@ -90,6 +107,17 @@ export default {
       .el-dropdown-link{
         cursor: pointer;
       }
+    }
+
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active 在 <2.1.8 中 */ {
+      opacity: 0
+    }
+
+    .layout-content{
+      padding: 15px;
     }
   }
 }
