@@ -4,6 +4,7 @@
     <el-menu theme="dark" :router="true" :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
       <el-menu-item index="/panel/dashboard"><i class="fa fa-dashboard"></i>控制面板</el-menu-item>
       <el-menu-item index="/panel/profile"><i class="fa fa-user-o"></i>个人信息</el-menu-item>
+      <el-menu-item index="/panel/category"><i class="fa fa-hashtag"></i>分类信息</el-menu-item>
     </el-menu>
   </el-col>
   <el-col class="right" :span="21" :offset="3">

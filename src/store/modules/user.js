@@ -2,7 +2,8 @@ const user = {
   state: {
     token: localStorage.getItem('token'),
     currentUser: {
-      name: '爆刘继芬'
+      name: '爆刘继芬',
+      role: 'admin',
     }
   },
 
@@ -26,7 +27,7 @@ const user = {
     // 登录
     login({commit}, userform) {
       return new Promise((resolve, reject) => {
-        const token = JSON.stringify(userform)
+        const token = JSON.stringify(userform)// 测试用
         commit('SET_TOKEN', token)
         resolve()
       })

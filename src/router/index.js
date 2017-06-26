@@ -11,6 +11,7 @@ import Home from '@/views/pages/home'
 import About from '@/views/pages/about'
 import Dashboard from '@/views/pages/dashboard'
 import Profile from '@/views/pages/user/profile'
+import Category from '@/views/pages/category'
 
 Vue.use(Router)
 
@@ -38,6 +39,7 @@ const routerMap = [
     children: [
       { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
       { path: 'profile', name: 'profile', component: Profile, meta: { requiresAuth: true } },
+      { path: 'category', name: 'category', component: Category, meta: { requiresAuth: true } }
     ]
   }
 ]
