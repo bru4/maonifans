@@ -1,5 +1,5 @@
 <template>
-  <div class="category" id="category">
+  <div class="category" id="category" v-loading.fullscreen.lock="fullscreenLoading">
     <el-tree v-if="categories" :data="categories" :props="defaultProps" node-key="id" default-expand-all :expand-on-click-node="false" :render-content="renderContent">
     </el-tree>
   </div>
@@ -17,7 +17,9 @@ export default {
       defaultProps: {
         children: 'children',
         label: 'name'
-      }
+      },
+
+      fullscreenLoading: false
     }
   },
 
@@ -32,12 +34,12 @@ export default {
   },
 
   methods: {
-    ...mapActions([
-      'getCategories'
-    ]),
-
-    handleNodeClick(data) {
-      console.log(data);
+    getCategories: function() {
+      var _this = this
+      _this.fullscreenLoading = true
+      this.$store.dispatch('getCategories').then(() => {
+        _this.fullscreenLoading = false
+      })
     },
 
     append(store, data) {
@@ -55,8 +57,8 @@ export default {
             <span>{node.label}</span>
           </span>
           <span style="float: right; margin-right: 20px">
-            <el-button size="mini" on-click={() => this.append(store, data)}>Append</el-button>
-            <el-button size="mini" on-click={() => this.remove(store, data)}>Delete</el-button>
+            <el-button size="mini" on-click={() => this.append(store, data)}>添加</el-button>
+            <el-button size="mini" on-click={() => this.remove(store, data)}>删除</el-button>
           </span>
         </span>
       );
