@@ -1,21 +1,29 @@
+import {userLogin} from '../../config/api/user'
+
 const user = {
   state: {
+    // JSON.parse(localStorage.getItem('token'))
     token: localStorage.getItem('token'),
-    currentUser: {
-      name: '爆刘继芬',
-      role: 'admin',
-    }
+    currentUser: JSON.parse(localStorage.getItem('currentUser'))
   },
 
   mutations: {
-    // 设置token
-    SET_TOKEN: (state, token) => {
-      state.token = token
-      localStorage.setItem('token', token)
+    // 登录
+    LOGIN_IN: (state, formdata) => {
+      userLogin(formdata).then((response) => {
+        const user = response.user
+        state.currentUser = user
+        state.token = user.token
+        localStorage.setItem('currentUser', JSON.stringify(user))
+        localStorage.setItem('token', state.token)
+      })
     },
+    // 登出
     LOGIN_OUT: (state) => {
       state.token = null
+      state.currentUser = null
       localStorage.removeItem('token')
+      localStorage.removeItem('currentUser')
     }
   },
 
@@ -27,8 +35,7 @@ const user = {
     // 登录
     login({commit}, userform) {
       return new Promise((resolve, reject) => {
-        const token = JSON.stringify(userform)// 测试用
-        commit('SET_TOKEN', token)
+        commit('LOGIN_IN', userform)
         resolve()
       })
     },

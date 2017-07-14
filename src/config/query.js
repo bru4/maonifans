@@ -1,10 +1,11 @@
 import axios from 'axios'
+import store from '../store'
 
 var baseURL
 if (process.env.NODE_ENV === 'production') {
   baseURL = 'https://api.github.com'
 } else {
-  baseURL = 'https://api.github.com'
+  baseURL = 'https://test.com'
 }
 
 const config = {

@@ -11,8 +11,8 @@
         </el-input>
       </el-form-item>
 
-      <el-form-item prop="pwd">
-        <el-input type="password" v-model="loginForm.pwd" placeholder="用户密码">
+      <el-form-item prop="password">
+        <el-input type="password" v-model="loginForm.password" placeholder="用户密码">
           <template slot="prepend">
             <i class="fa fa-key"></i>
           </template>
@@ -34,7 +34,7 @@ export default {
       loading: false,
       loginForm: {
         account: '',
-        pwd: ''
+        password: ''
       },
       rules: {
         account: [{
@@ -49,7 +49,7 @@ export default {
           trigger: 'blur'
         }
         ],
-        pwd: [{
+        password: [{
           required: true,
           message: '请输入用户密码（必填）',
           trigger: 'blur'

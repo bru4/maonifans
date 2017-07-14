@@ -7,7 +7,7 @@
       <el-menu-item index="/panel/category"><i class="fa fa-hashtag"></i>分类信息</el-menu-item>
     </el-menu>
   </el-col>
-  <el-col class="right" :span="21" :offset="3">
+  <el-col class="right" :span="21" :offset="3" v-if="currentUser">
     <el-row class="head">
       <el-col :span="22">
         <el-breadcrumb separator="/">

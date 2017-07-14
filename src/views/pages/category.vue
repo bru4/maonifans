@@ -27,7 +27,7 @@ export default {
   data: () => ({
     form: {
       name: '',
-        region: ''
+      region: ''
     },
     formLabelWidth: '120px',
   })
