@@ -70,7 +70,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           _this.loading = true
-          this.$store.dispatch('login', _this.loginForm).then(() => {
+          this.$store.dispatch('user/login', _this.loginForm).then(() => {
             _this.loading = false
             _this.$router.push({ path: '/' })
           }).catch((error) => {

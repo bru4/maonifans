@@ -7,7 +7,8 @@ const userTemplete = {
     'name': '@cname()',
     'avatar': "@image('200x200', '#51DB89', '#ffffff', '☺')",
     'introduction': '@cparagraph(2)',
-    'token': '@guid()'
+    'token': '@guid()',
+    'phone': /^1(3|4|5|7|8)\d{9}$/
 }
 
 const accounts = [{
