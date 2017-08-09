@@ -2,17 +2,17 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '@/store'
 
-import HomeLayout from '@/views/layouts/homeLayout'
-import MainLayout from '@/views/layouts/mainLayout'
-import OtherLayout from '@/views/layouts/otherLayout'
+const HomeLayout = r => require.ensure([], () => r(require('@/views/layouts/homeLayout')), 'layout')
+const MainLayout = r => require.ensure([], () => r(require('@/views/layouts/mainLayout')), 'layout')
+const OtherLayout = r => require.ensure([], () => r(require('@/views/layouts/OtherLayout')), 'layout')
 
-import Login from '@/views/pages/auth/login'
-import Home from '@/views/pages/home'
-import About from '@/views/pages/about'
-import Dashboard from '@/views/pages/dashboard'
-import Profile from '@/views/pages/user/profile'
-import Users from '@/views/pages/user/users'
-import Category from '@/views/pages/category'
+const Login = r => require.ensure([], () => r(require('@/views/pages/auth/login')), 'other')
+const Home = r => require.ensure([], () => r(require('@/views/pages/home')), 'other')
+const About = r => require.ensure([], () => r(require('@/views/pages/about')), 'other')
+const Dashboard = r => require.ensure([], () => r(require('@/views/pages/dashboard')), 'panel')
+const Profile = r => require.ensure([], () => r(require('@/views/pages/user/Profile')), 'panel')
+const Users = r => require.ensure([], () => r(require('@/views/pages/user/users')), 'panel')
+const Category = r => require.ensure([], () => r(require('@/views/pages/category')), 'panel')
 
 Vue.use(Router)
 
