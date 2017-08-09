@@ -44,10 +44,11 @@ const user = {
 
         //注销
         logout({ commit }) {
-            return new Promise((resolve, reject) => {
-                commit('LOGIN_OUT')
-                resolve()
-            })
+          commit('LOGIN_OUT')
+          // return new Promise((resolve, reject) => {
+          //     commit('LOGIN_OUT')
+          //     resolve()
+          // })
         }
     },
 

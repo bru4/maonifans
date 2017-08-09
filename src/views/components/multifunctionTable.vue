@@ -145,7 +145,3 @@ export default {
     },
 }
 </script>
-
-<style lang="scss" scoped>
-.multifunction-table {}
-</style>

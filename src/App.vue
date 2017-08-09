@@ -15,8 +15,8 @@ export default {
     },
     methods: {
       init: function() {
-        console.log('store', this.$store)
-        console.log('router', this.$router)
+        console.log('init_store', this.$store.state)
+        // console.log('router', this.$router)
       }
     }
 }

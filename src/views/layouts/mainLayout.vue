@@ -3,6 +3,7 @@
   <el-col class="left" :span="3">
     <el-menu theme="dark" :router="true" :default-active="$route.path" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
       <el-menu-item index="/panel/dashboard"><i class="fa fa-dashboard"></i>控制面板</el-menu-item>
+      <el-menu-item index="/panel/brand"><i class="fa fa-envira"></i>品牌管理</el-menu-item>
       <el-menu-item index="/panel/profile"><i class="fa fa-user-o"></i>个人信息</el-menu-item>
       <el-menu-item index="/panel/users"><i class="fa fa-navicon"></i>用户列表</el-menu-item>
       <el-menu-item index="/panel/category"><i class="fa fa-hashtag"></i>分类信息</el-menu-item>
@@ -73,7 +74,7 @@ export default {
     },
     logout: function(){
       var _this = this
-      this.$store.dispatch('logout').then(() => {
+      this.$store.dispatch('user/logout').then(() => {
         _this.$router.push({ path: '/' })
       }).catch((error) => {
         _this.$message.error(error);

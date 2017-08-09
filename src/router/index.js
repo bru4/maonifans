@@ -10,6 +10,7 @@ const Login = r => require.ensure([], () => r(require('@/views/pages/auth/login'
 const Home = r => require.ensure([], () => r(require('@/views/pages/home')), 'other')
 const About = r => require.ensure([], () => r(require('@/views/pages/about')), 'other')
 const Dashboard = r => require.ensure([], () => r(require('@/views/pages/dashboard')), 'panel')
+const Brand = r => require.ensure([], () => r(require('@/views/pages/brand')), 'panel')
 const Profile = r => require.ensure([], () => r(require('@/views/pages/user/Profile')), 'panel')
 const Users = r => require.ensure([], () => r(require('@/views/pages/user/users')), 'panel')
 const Category = r => require.ensure([], () => r(require('@/views/pages/category')), 'panel')
@@ -39,9 +40,10 @@ const routerMap = [
     redirect: 'dashboard',
     children: [
       { path: 'dashboard', name: 'dashboard', component: Dashboard, meta: { requiresAuth: true } },
+      { path: 'brand', name: 'brand', component: Brand, meta: { requiresAuth: true } },
       { path: 'profile', name: 'profile', component: Profile, meta: { requiresAuth: true } },
       { path: 'category', name: 'category', component: Category, meta: { requiresAuth: true } },
-      { path: 'users', name: 'users', component: Users, meta: { requiresAuth: true } }
+      { path: 'users', name: 'users', component: Users, meta: { requiresAuth: true } },
     ]
   }
 ]
